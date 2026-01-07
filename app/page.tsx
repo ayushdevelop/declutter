@@ -1,6 +1,40 @@
 "use client";
 
 import Image from "next/image";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/base-dialog";
+import { Button } from "@/components/ui/base-button";
+
+const faqSections = [
+  {
+    title: "Account Management",
+    content:
+      "Navigate to the registration page, provide the required information, and verify your email address. You can sign up using your email or through social media platforms.",
+  },
+  {
+    title: "Payment and Billing",
+    content:
+      "We accept all major credit cards, PayPal, and bank transfers. If you face issues, check your payment details or contact our support team.",
+  },
+  {
+    title: "Subscription Plans",
+    content:
+      "Choose a plan that fits your needs. Upgrade, downgrade, or cancel at any time from the subscription settings page in your account.",
+  },
+  {
+    title: "Technical Support",
+    content:
+      "Our support team is available 24/7 via live chat or email. Check our Help Center for troubleshooting guides and tips.",
+  },
+];
 
 export default function Home() {
   return (
@@ -52,14 +86,30 @@ export default function Home() {
             />
             Deploy Now
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          <Dialog>
+            <DialogTrigger render={<Button variant="outline" />}>
+              Show Dialog
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-lg sm:max-h-[min(650px,80vh)]">
+              <DialogHeader>
+                <DialogTitle>Frequently Asked Questions(FAQ)</DialogTitle>
+                <DialogDescription></DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-4 [&_h3]:font-semibold [&_h3]:text-foreground">
+                {faqSections.map((faq, index) => (
+                  <div key={index} className="text-accent-foreground space-y-1">
+                    <h3>{faq.title}</h3>
+                    <p>{faq.content}</p>
+                  </div>
+                ))}
+              </div>
+              <DialogFooter>
+                <DialogClose>Cancel</DialogClose>
+                <Button type="submit">Submit</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </main>
     </div>
