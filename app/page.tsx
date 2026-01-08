@@ -116,7 +116,10 @@ export default function Home() {
                   className="absolute inset-0 w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-200/60 to-stone-300/40 blur-xl"
                 />
                 <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-100 via-stone-100 to-stone-200 flex items-center justify-center shadow-lg shadow-amber-900/5 border border-white/50">
-                  <Feather className="w-9 h-9 text-stone-600" strokeWidth={1.5} />
+                  <Feather
+                    className="w-9 h-9 text-stone-600"
+                    strokeWidth={1.5}
+                  />
                 </div>
               </div>
             </motion.div>
@@ -124,8 +127,7 @@ export default function Home() {
             {/* Trust badge */}
             <motion.div variants={itemVariants}>
               <Badge variant="warm" size="md" className="backdrop-blur-sm">
-                <Leaf className="w-3.5 h-3.5" />
-                A gentler approach to clarity
+                <Leaf className="w-3.5 h-3.5" />A gentler approach to clarity
               </Badge>
             </motion.div>
 
@@ -138,9 +140,9 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-stone-600/90 leading-relaxed max-w-2xl mx-auto font-light">
-                Sometimes our minds carry more than they need to. Declutter is here
-                to help you gently sort through what matters, at your own pace,
-                with warmth and understanding.
+                Sometimes our minds carry more than they need to. Declutter is
+                here to help you gently sort through what matters, at your own
+                pace, with warmth and understanding.
               </p>
             </motion.div>
 
@@ -149,8 +151,8 @@ export default function Home() {
               variants={itemVariants}
               className="text-stone-500 text-base leading-relaxed max-w-md mx-auto"
             >
-              No pressure. No judgment. Just a calm companion
-              for your mental wellness journey.
+              No pressure. No judgment. Just a calm companion for your mental
+              wellness journey.
             </motion.p>
 
             {/* Refined call to action */}
@@ -166,7 +168,7 @@ export default function Home() {
                     radius="full"
                     className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
                   >
-                    <span>Go to App</span>
+                    <span>Discover how it works</span>
                     <motion.span
                       className="inline-block ml-2"
                       initial={{ x: 0 }}
@@ -197,68 +199,6 @@ export default function Home() {
                   </Button>
                 </SignUpButton>
               )}
-
-              <Dialog>
-                <DialogTrigger
-                  render={
-                    <Button
-                      variant="ghost"
-                      size="lg"
-                      radius="full"
-                      className="px-6 text-stone-600 hover:text-stone-800 hover:bg-stone-100/80 transition-all duration-300"
-                    />
-                  }
-                >
-                  Discover how it works
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-lg bg-gradient-to-b from-stone-50 to-white border-stone-200/70 shadow-2xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-stone-800 text-xl">
-                      How Declutter supports you
-                    </DialogTitle>
-                    <DialogDescription className="text-stone-600">
-                      A gentle approach to finding mental clarity
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  <div className="space-y-6 py-6">
-                    <HowItWorksItem
-                      number={1}
-                      title="Share what is on your mind"
-                      description="Write freely about your thoughts, worries, or feelings. There is no right or wrong way to express yourself here."
-                    />
-                    <HowItWorksItem
-                      number={2}
-                      title="Receive gentle reflections"
-                      description="We help you see patterns and perspectives you might have missed, without telling you what to think or feel."
-                    />
-                    <HowItWorksItem
-                      number={3}
-                      title="Find clarity at your own pace"
-                      description="Take breaks whenever you need. Come back when you are ready. Your journey is uniquely yours."
-                    />
-                  </div>
-
-                  <DialogFooter className="gap-3">
-                    <DialogClose className="text-stone-600 border-stone-200 hover:bg-stone-50">
-                      Maybe later
-                    </DialogClose>
-                    {isSignedIn ? (
-                      <Link href="/onboard">
-                        <Button className="bg-stone-800 hover:bg-stone-700 shadow-md">
-                          Go to App
-                        </Button>
-                      </Link>
-                    ) : (
-                      <SignUpButton mode="modal">
-                        <Button className="bg-stone-800 hover:bg-stone-700 shadow-md">
-                          Get started
-                        </Button>
-                      </SignUpButton>
-                    )}
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
             </motion.div>
           </motion.div>
         </section>
@@ -361,10 +301,22 @@ export default function Home() {
             className="max-w-3xl mx-auto"
           >
             <div className="flex flex-wrap justify-center gap-6 text-stone-400">
-              <TrustIndicator icon={<Moon className="w-5 h-5" />} label="Always available" />
-              <TrustIndicator icon={<Shield className="w-5 h-5" />} label="Private & secure" />
-              <TrustIndicator icon={<Sun className="w-5 h-5" />} label="Judgment-free" />
-              <TrustIndicator icon={<Leaf className="w-5 h-5" />} label="At your own pace" />
+              <TrustIndicator
+                icon={<Moon className="w-5 h-5" />}
+                label="Always available"
+              />
+              <TrustIndicator
+                icon={<Shield className="w-5 h-5" />}
+                label="Private & secure"
+              />
+              <TrustIndicator
+                icon={<Sun className="w-5 h-5" />}
+                label="Judgment-free"
+              />
+              <TrustIndicator
+                icon={<Leaf className="w-5 h-5" />}
+                label="At your own pace"
+              />
             </div>
           </motion.div>
         </section>
@@ -379,17 +331,25 @@ export default function Home() {
             className="max-w-2xl mx-auto text-center"
           >
             <motion.div variants={itemVariants}>
-              <Card variant="glass" padding="lg" className="border-stone-200/30 shadow-2xl shadow-stone-300/20">
+              <Card
+                variant="glass"
+                padding="lg"
+                className="border-stone-200/30 shadow-2xl shadow-stone-300/20"
+              >
                 <CardContent className="space-y-8 py-4">
                   <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-amber-100 to-stone-200 flex items-center justify-center">
-                    <Feather className="w-7 h-7 text-stone-600" strokeWidth={1.5} />
+                    <Feather
+                      className="w-7 h-7 text-stone-600"
+                      strokeWidth={1.5}
+                    />
                   </div>
                   <div className="space-y-4">
                     <h2 className="text-2xl sm:text-3xl font-light text-stone-800">
                       Ready to find some clarity?
                     </h2>
                     <p className="text-stone-500 max-w-md mx-auto">
-                      Your thoughts deserve a peaceful place to land. Start whenever feels right.
+                      Your thoughts deserve a peaceful place to land. Start
+                      whenever feels right.
                     </p>
                   </div>
                   {isSignedIn ? (
@@ -432,12 +392,17 @@ export default function Home() {
           >
             <div className="flex justify-center gap-1 items-center text-stone-400">
               <Feather className="w-4 h-4" strokeWidth={1.5} />
-              <span className="text-sm font-medium tracking-wide">Declutter</span>
+              <span className="text-sm font-medium tracking-wide">
+                Declutter
+              </span>
             </div>
             <p className="text-stone-400 text-sm">
               Taking care of your mind is not a luxury. It is essential.
             </p>
-            <Separator variant="warm" className="max-w-[100px] mx-auto opacity-50" />
+            <Separator
+              variant="warm"
+              className="max-w-[100px] mx-auto opacity-50"
+            />
             <p className="text-stone-400/60 text-xs">
               Made with care for those seeking calm
             </p>
@@ -504,7 +469,9 @@ function FeatureCard({
         </div>
         <div className="space-y-2">
           <h3 className="font-medium text-stone-800 text-lg">{title}</h3>
-          <p className="text-sm text-stone-500 leading-relaxed">{description}</p>
+          <p className="text-sm text-stone-500 leading-relaxed">
+            {description}
+          </p>
         </div>
       </CardContent>
     </Card>
