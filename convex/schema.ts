@@ -11,4 +11,12 @@ export default defineSchema({
     body: v.string(),
     user: v.string(),
   }),
+  journalEntries: defineTable({
+    userId: v.id("users"),
+    content: v.string(),
+    mood: v.string(), // "Happy" | "Sad" | "Anxious" | "Calm" | "Energetic" | "Tired" | "Angry" | "Peaceful"
+    date: v.string(), // ISO format YYYY-MM-DD
+  })
+    .index("byUserAndDate", ["userId", "date"])
+    .index("byUserId", ["userId"]),
 });
