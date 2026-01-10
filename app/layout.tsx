@@ -1,6 +1,5 @@
 import Providers from "@/components/providers";
 import { cn } from "@/lib/utils";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -20,12 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("text-base antialiased", inter.className)}>
-        <ClerkProvider>
-          <Providers>
-            {children}
-            <div className="isolate"></div>
-          </Providers>
-        </ClerkProvider>
+        <Providers>
+          {children}
+          <div className="isolate"></div>
+        </Providers>
       </body>
     </html>
   );
