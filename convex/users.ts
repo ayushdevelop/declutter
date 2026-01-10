@@ -1,4 +1,10 @@
-import { internalMutation, query, QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  mutation,
+  query,
+  QueryCtx,
+  MutationCtx,
+} from "./_generated/server";
 import { UserJSON } from "@clerk/backend";
 import { v, Validator } from "convex/values";
 
@@ -15,6 +21,7 @@ export const upsertFromClerk = internalMutation({
     const userAttributes = {
       name: `${data.first_name} ${data.last_name}`,
       externalId: data.id,
+      onboardingCompleted: false,
     };
 
     const user = await userByExternalId(ctx, data.id);
@@ -41,10 +48,24 @@ export const deleteFromClerk = internalMutation({
   },
 });
 
-export async function getCurrentUserOrThrow(ctx: QueryCtx) {
+export async function getCurrentUserOrThrow(ctx: QueryCtx | MutationCtx) {
   const userRecord = await getCurrentUser(ctx);
-  if (!userRecord) throw new Error("Can't get current user");
-  return userRecord;
+  if (userRecord !== null) {
+    return userRecord;
+  }
+
+  const identity = await ctx.auth.getUserIdentity();
+  if (identity !== null && "insert" in ctx.db) {
+    const userAttributes = {
+      name: identity.name ?? identity.nickname ?? "Anonymous",
+      externalId: identity.subject,
+      onboardingCompleted: false,
+    };
+    const userId = await (ctx.db as any).insert("users", userAttributes);
+    return (await ctx.db.get(userId))!;
+  }
+
+  throw new Error("Can't get current user");
 }
 
 export async function getCurrentUser(ctx: QueryCtx) {
@@ -61,3 +82,32 @@ async function userByExternalId(ctx: QueryCtx, externalId: string) {
     .withIndex("byExternalId", (q) => q.eq("externalId", externalId))
     .unique();
 }
+
+export const markOnboardingCompleted = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const user = await getCurrentUserOrThrow(ctx);
+    await ctx.db.patch(user._id, { onboardingCompleted: true });
+  },
+});
+
+export const markOnboardingSkipped = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const user = await getCurrentUserOrThrow(ctx);
+    await ctx.db.patch(user._id, { onboardingCompleted: true });
+  },
+});
+
+export const getOnboardingStatus = query({
+  args: {},
+  handler: async (ctx) => {
+    const user = await getCurrentUser(ctx);
+    if (!user) {
+      return { onboardingCompleted: false };
+    }
+    return {
+      onboardingCompleted: user.onboardingCompleted ?? false,
+    };
+  },
+});

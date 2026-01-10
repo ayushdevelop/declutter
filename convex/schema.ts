@@ -6,6 +6,7 @@ export default defineSchema({
     name: v.string(),
     // this the Clerk ID, stored in the subject JWT field
     externalId: v.string(),
+    onboardingCompleted: v.optional(v.boolean()),
   }).index("byExternalId", ["externalId"]),
   messages: defineTable({
     body: v.string(),

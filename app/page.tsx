@@ -116,7 +116,10 @@ export default function Home() {
                   className="absolute inset-0 w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-200/60 to-stone-300/40 blur-xl"
                 />
                 <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-100 via-stone-100 to-stone-200 flex items-center justify-center shadow-lg shadow-amber-900/5 border border-white/50">
-                  <Feather className="w-9 h-9 text-stone-600" strokeWidth={1.5} />
+                  <Feather
+                    className="w-9 h-9 text-stone-600"
+                    strokeWidth={1.5}
+                  />
                 </div>
               </div>
             </motion.div>
@@ -124,8 +127,7 @@ export default function Home() {
             {/* Trust badge */}
             <motion.div variants={itemVariants}>
               <Badge variant="warm" size="md" className="backdrop-blur-sm">
-                <Leaf className="w-3.5 h-3.5" />
-                A gentler approach to clarity
+                <Leaf className="w-3.5 h-3.5" />A gentler approach to clarity
               </Badge>
             </motion.div>
 
@@ -138,9 +140,9 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-stone-600/90 leading-relaxed max-w-2xl mx-auto font-light">
-                Sometimes our minds carry more than they need to. Declutter is here
-                to help you gently sort through what matters, at your own pace,
-                with warmth and understanding.
+                Sometimes our minds carry more than they need to. Declutter is
+                here to help you gently sort through what matters, at your own
+                pace, with warmth and understanding.
               </p>
             </motion.div>
 
@@ -149,8 +151,8 @@ export default function Home() {
               variants={itemVariants}
               className="text-stone-500 text-base leading-relaxed max-w-md mx-auto"
             >
-              No pressure. No judgment. Just a calm companion
-              for your mental wellness journey.
+              No pressure. No judgment. Just a calm companion for your mental
+              wellness journey.
             </motion.p>
 
             {/* Refined call to action */}
@@ -158,45 +160,24 @@ export default function Home() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2"
             >
-              {isSignedIn ? (
-                <Link href="/onboard">
-                  <Button
-                    variant="mono"
-                    size="lg"
-                    radius="full"
-                    className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
+              <SignUpButton mode="modal" forceRedirectUrl="/onboard">
+                <Button
+                  variant="mono"
+                  size="lg"
+                  radius="full"
+                  className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
+                >
+                  <span>Get Started</span>
+                  <motion.span
+                    className="inline-block ml-2"
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <span>Go to App</span>
-                    <motion.span
-                      className="inline-block ml-2"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </motion.span>
-                  </Button>
-                </Link>
-              ) : (
-                <SignUpButton mode="modal">
-                  <Button
-                    variant="mono"
-                    size="lg"
-                    radius="full"
-                    className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
-                  >
-                    <span>Begin your journey</span>
-                    <motion.span
-                      className="inline-block ml-2"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </motion.span>
-                  </Button>
-                </SignUpButton>
-              )}
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </motion.span>
+                </Button>
+              </SignUpButton>
 
               <Dialog>
                 <DialogTrigger
@@ -250,7 +231,7 @@ export default function Home() {
                         </Button>
                       </Link>
                     ) : (
-                      <SignUpButton mode="modal">
+                      <SignUpButton mode="modal" forceRedirectUrl="/onboard">
                         <Button className="bg-stone-800 hover:bg-stone-700 shadow-md">
                           Get started
                         </Button>
@@ -361,10 +342,22 @@ export default function Home() {
             className="max-w-3xl mx-auto"
           >
             <div className="flex flex-wrap justify-center gap-6 text-stone-400">
-              <TrustIndicator icon={<Moon className="w-5 h-5" />} label="Always available" />
-              <TrustIndicator icon={<Shield className="w-5 h-5" />} label="Private & secure" />
-              <TrustIndicator icon={<Sun className="w-5 h-5" />} label="Judgment-free" />
-              <TrustIndicator icon={<Leaf className="w-5 h-5" />} label="At your own pace" />
+              <TrustIndicator
+                icon={<Moon className="w-5 h-5" />}
+                label="Always available"
+              />
+              <TrustIndicator
+                icon={<Shield className="w-5 h-5" />}
+                label="Private & secure"
+              />
+              <TrustIndicator
+                icon={<Sun className="w-5 h-5" />}
+                label="Judgment-free"
+              />
+              <TrustIndicator
+                icon={<Leaf className="w-5 h-5" />}
+                label="At your own pace"
+              />
             </div>
           </motion.div>
         </section>
@@ -379,17 +372,25 @@ export default function Home() {
             className="max-w-2xl mx-auto text-center"
           >
             <motion.div variants={itemVariants}>
-              <Card variant="glass" padding="lg" className="border-stone-200/30 shadow-2xl shadow-stone-300/20">
+              <Card
+                variant="glass"
+                padding="lg"
+                className="border-stone-200/30 shadow-2xl shadow-stone-300/20"
+              >
                 <CardContent className="space-y-8 py-4">
                   <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-amber-100 to-stone-200 flex items-center justify-center">
-                    <Feather className="w-7 h-7 text-stone-600" strokeWidth={1.5} />
+                    <Feather
+                      className="w-7 h-7 text-stone-600"
+                      strokeWidth={1.5}
+                    />
                   </div>
                   <div className="space-y-4">
                     <h2 className="text-2xl sm:text-3xl font-light text-stone-800">
                       Ready to find some clarity?
                     </h2>
                     <p className="text-stone-500 max-w-md mx-auto">
-                      Your thoughts deserve a peaceful place to land. Start whenever feels right.
+                      Your thoughts deserve a peaceful place to land. Start
+                      whenever feels right.
                     </p>
                   </div>
                   {isSignedIn ? (
@@ -404,14 +405,14 @@ export default function Home() {
                       </Button>
                     </Link>
                   ) : (
-                    <SignUpButton mode="modal">
+                    <SignUpButton mode="modal" forceRedirectUrl="/onboard">
                       <Button
                         variant="mono"
                         size="lg"
                         radius="full"
                         className="px-10 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-lg shadow-stone-300/30"
                       >
-                        Begin your journey
+                        Get Started
                       </Button>
                     </SignUpButton>
                   )}
@@ -432,12 +433,17 @@ export default function Home() {
           >
             <div className="flex justify-center gap-1 items-center text-stone-400">
               <Feather className="w-4 h-4" strokeWidth={1.5} />
-              <span className="text-sm font-medium tracking-wide">Declutter</span>
+              <span className="text-sm font-medium tracking-wide">
+                Declutter
+              </span>
             </div>
             <p className="text-stone-400 text-sm">
               Taking care of your mind is not a luxury. It is essential.
             </p>
-            <Separator variant="warm" className="max-w-[100px] mx-auto opacity-50" />
+            <Separator
+              variant="warm"
+              className="max-w-[100px] mx-auto opacity-50"
+            />
             <p className="text-stone-400/60 text-xs">
               Made with care for those seeking calm
             </p>
@@ -504,7 +510,9 @@ function FeatureCard({
         </div>
         <div className="space-y-2">
           <h3 className="font-medium text-stone-800 text-lg">{title}</h3>
-          <p className="text-sm text-stone-500 leading-relaxed">{description}</p>
+          <p className="text-sm text-stone-500 leading-relaxed">
+            {description}
+          </p>
         </div>
       </CardContent>
     </Card>
