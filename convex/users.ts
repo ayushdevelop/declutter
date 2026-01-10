@@ -1,4 +1,10 @@
-import { internalMutation, mutation, query, QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  mutation,
+  query,
+  QueryCtx,
+  MutationCtx,
+} from "./_generated/server";
 import { UserJSON } from "@clerk/backend";
 import { v, Validator } from "convex/values";
 
@@ -42,10 +48,24 @@ export const deleteFromClerk = internalMutation({
   },
 });
 
-export async function getCurrentUserOrThrow(ctx: QueryCtx) {
+export async function getCurrentUserOrThrow(ctx: QueryCtx | MutationCtx) {
   const userRecord = await getCurrentUser(ctx);
-  if (!userRecord) throw new Error("Can't get current user");
-  return userRecord;
+  if (userRecord !== null) {
+    return userRecord;
+  }
+
+  const identity = await ctx.auth.getUserIdentity();
+  if (identity !== null && "insert" in ctx.db) {
+    const userAttributes = {
+      name: identity.name ?? identity.nickname ?? "Anonymous",
+      externalId: identity.subject,
+      onboardingCompleted: false,
+    };
+    const userId = await (ctx.db as any).insert("users", userAttributes);
+    return (await ctx.db.get(userId))!;
+  }
+
+  throw new Error("Can't get current user");
 }
 
 export async function getCurrentUser(ctx: QueryCtx) {

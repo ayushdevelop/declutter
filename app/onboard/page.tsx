@@ -60,7 +60,7 @@ export default function OnboardPage() {
   // Redirect if onboarding already completed
   useEffect(() => {
     if (onboardingStatus?.onboardingCompleted) {
-      router.push("/app");
+      router.push("/home");
     }
   }, [onboardingStatus, router]);
 
@@ -69,7 +69,7 @@ export default function OnboardPage() {
       setIsCompleting(true);
       setError(null);
       await markSkipped();
-      router.push("/app");
+      router.push("/home");
     } catch {
       setError("Failed to skip onboarding. Please try again.");
       setIsCompleting(false);
@@ -87,7 +87,7 @@ export default function OnboardPage() {
       setIsCompleting(true);
       setError(null);
       await markCompleted();
-      router.push("/app");
+      router.push("/home");
     } catch {
       setError("Failed to complete onboarding. Please try again.");
       setIsCompleting(false);
@@ -255,8 +255,8 @@ function Step1Welcome() {
           Welcome to Declutter
         </h1>
         <p className="text-lg text-stone-600 leading-relaxed max-w-md mx-auto">
-          We&apos;re so glad you&apos;re here. This is a safe space for you to explore your
-          thoughts and find clarity at your own pace.
+          We&apos;re so glad you&apos;re here. This is a safe space for you to
+          explore your thoughts and find clarity at your own pace.
         </p>
         <p className="text-base text-stone-500 max-w-md mx-auto">
           Let&apos;s take a few moments to personalize your experience.
@@ -352,8 +352,8 @@ function Step3Complete() {
           You&apos;re all set!
         </h2>
         <p className="text-lg text-stone-600 leading-relaxed max-w-md mx-auto">
-          You&apos;re ready to begin your journey with Declutter. Remember, there&apos;s
-          no pressure—take your time and be gentle with yourself.
+          You&apos;re ready to begin your journey with Declutter. Remember,
+          there&apos;s no pressure—take your time and be gentle with yourself.
         </p>
         <Badge variant="warm" size="md" className="mt-4">
           <Leaf className="w-3.5 h-3.5" />

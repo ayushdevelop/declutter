@@ -160,45 +160,24 @@ export default function Home() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2"
             >
-              {isSignedIn ? (
-                <Link href="/onboard">
-                  <Button
-                    variant="mono"
-                    size="lg"
-                    radius="full"
-                    className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
+              <SignUpButton mode="modal" forceRedirectUrl="/onboard">
+                <Button
+                  variant="mono"
+                  size="lg"
+                  radius="full"
+                  className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
+                >
+                  <span>Get Started</span>
+                  <motion.span
+                    className="inline-block ml-2"
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <span>Get Started</span>
-                    <motion.span
-                      className="inline-block ml-2"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </motion.span>
-                  </Button>
-                </Link>
-              ) : (
-                <SignUpButton mode="modal" forceRedirectUrl="/onboard">
-                  <Button
-                    variant="mono"
-                    size="lg"
-                    radius="full"
-                    className="group px-8 py-6 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-xl shadow-stone-400/20 transition-all duration-500 hover:shadow-2xl hover:shadow-stone-400/30 hover:-translate-y-0.5"
-                  >
-                    <span>Begin your journey</span>
-                    <motion.span
-                      className="inline-block ml-2"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </motion.span>
-                  </Button>
-                </SignUpButton>
-              )}
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </motion.span>
+                </Button>
+              </SignUpButton>
 
               <Dialog>
                 <DialogTrigger
@@ -433,7 +412,7 @@ export default function Home() {
                         radius="full"
                         className="px-10 bg-stone-800 hover:bg-stone-700 text-stone-50 shadow-lg shadow-stone-300/30"
                       >
-                        Begin your journey
+                        Get Started
                       </Button>
                     </SignUpButton>
                   )}

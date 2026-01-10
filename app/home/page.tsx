@@ -1,4 +1,4 @@
-export default function AppPage() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/20 to-stone-100/50 flex items-center justify-center px-6">
       <div className="max-w-2xl mx-auto text-center space-y-6">
