@@ -6,7 +6,15 @@
       "Bash(npm run build:*)",
       "Bash(lsof:*)",
       "Bash(netstat:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "WebFetch(domain:stack.convex.dev)",
+      "WebFetch(domain:docs.convex.dev)",
+      "Bash(npm install:*)",
+      "mcp__convex__tables",
+      "Bash(npm run dev:backend:*)",
+      "mcp__convex__functionSpec",
+      "Bash(npm run dev:*)",
+      "mcp__convex__run"
     ]
   }
 }
