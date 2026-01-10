@@ -9,6 +9,7 @@
  */
 
 import type * as http from "../http.js";
+import type * as journal from "../journal.js";
 import type * as messages from "../messages.js";
 import type * as users from "../users.js";
 
@@ -20,6 +21,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   http: typeof http;
+  journal: typeof journal;
   messages: typeof messages;
   users: typeof users;
 }>;
